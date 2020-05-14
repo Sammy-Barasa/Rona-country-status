@@ -18,7 +18,7 @@ const AllCountries =({handleChange}) =>{
 
 
     return (
-        countries.length!=0?
+        countries.length!==0?
         <div>
             <FormControl className={'FormControl'}>
                 <InputLabel htmlFor='CountryChosen'>Country</InputLabel>
