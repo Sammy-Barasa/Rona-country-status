@@ -1,26 +1,37 @@
 
-import React from "react";
+import React , { useState,useEffect }from "react";
 import { getCountries } from '../getApiData/'
+import { InputLabel, NativeSelect, FormControl } from '@material-ui/core';
 
-import { InputLabel, Select, FormControl } from '@material-ui/core';
 
-const coun = async ()=>{await getCountries()}
-console.log(coun)
 
-export default function countryToGet(props) {
-    
+const AllCountries =({handleChange}) =>{
+   const [countries,setCountries]= useState([]);
+    useEffect(()=>{
+        const fetchAPI = async () => {
+            setCountries(await getCountries());
+          };
+      
+          fetchAPI();
+          console.log(countries)
+        },[setCountries]);
+
 
     return (
+        countries.length!=0?
         <div>
-        <FormControl className={'FormControl'}>
-        <InputLabel htmlFor='CountryChosen'>Country</InputLabel>
-        <Select native value={props.country} onChange={props.handleChange} inputProps={{name: 'Country',id: 'CountryChosen',}}>
-          <option aria-label="None" value="" />
-        {(coun)=>{coun.forEach((country, index)=> {
-          return  <option key={index} value={country}>{country}</option>
-        })}}
-        </Select>
-      </FormControl>
-      </div>
+            <FormControl className={'FormControl'}>
+                <InputLabel htmlFor='CountryChosen'>Country</InputLabel>
+                <NativeSelect value="" onChange={(e) => handleChange(e.target.value)}>
+                    <option aria-label="None" value="" />
+                    <option value="">Global</option>
+                    {countries.map((country, index)=> {
+                    return  <option key={index} value={country}>{country}</option>
+                    })}
+                </NativeSelect>
+            </FormControl>
+       </div>: null
     );       
 }
+
+export default AllCountries 

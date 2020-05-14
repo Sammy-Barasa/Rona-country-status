@@ -5,9 +5,7 @@ export const getCountries=async () =>{
     try {
       const response=async ()=> await (await fetch('https://covid19.mathdro.id/api/countries')).json()
       const {countries}= await response()
-      console.log(countries)
       const choices= countries.map(country=>country.name)
-      console.log(choices)
       return choices
     } catch (error) {
       console.error(error)

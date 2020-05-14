@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CountrySelector from './components/pickCountry'
+import AllCountries  from './components/pickCountry'
 
 
 
@@ -10,6 +10,13 @@ class App extends Component {
       country:""
     };
   }
+  handleChange=(nation)=>{
+    this.setState({
+      country: nation
+    })
+  const checkChoice= this.state.country
+   console.log(checkChoice)
+  }
   componentDidMount(){
     
     }
@@ -17,7 +24,7 @@ class App extends Component {
     return (
       <div>
         <h1>App</h1>
-        <CountrySelector  handleChange={(e)=>{console.log('changed')}}/>
+        <AllCountries handleChange={this.handleChange}/>
       </div>
     );
   }
