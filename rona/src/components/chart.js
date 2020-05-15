@@ -4,7 +4,7 @@ import {getDailyDates,getDailyData} from '../getApiData/'
 import { Paper,Grid} from '@material-ui/core';
 
 
-const Graphs = ({country, data: {confirmed,recovered,deaths}})=>{
+const Graphs = ({country, data: {confirmed,recovered,deaths,lastupdate}})=>{
 const [dates,setDates]=useState([])
 const [globaldata,setGlobaldata]=useState([])
      useEffect(()=>{
@@ -26,6 +26,7 @@ const [globaldata,setGlobaldata]=useState([])
         console.log(error)
     }
     const barChart=(
+      
         confirmed?
         <Bar
             data={{
@@ -37,12 +38,14 @@ const [globaldata,setGlobaldata]=useState([])
                     }
                 ]
             }}
-            width={1000}
-            height={800}
-            option={{
-                    legend: { display: false },
-                    title: { display: true, text: `Current state in ${country}` },
-                    maintainAspectRatio: false
+            width={500}
+            height={300}
+            legend={ {display: false} }
+            options={{
+                    maintainAspectRatio: false,
+                    title:{display: true, 
+                             text: `Current state in ${country}`,
+                             fontSize:20},
                   }}
         />:null
     )
@@ -65,15 +68,11 @@ const [globaldata,setGlobaldata]=useState([])
                     fill: true,
                 },],
             }}
-            width={1000}
-            height={700}
+            width={800}
+            height={500}
             options={{ maintainAspectRatio: false }}
         />: null
     )
-
-    const style={
-
-    }
     
     return(
         
@@ -81,7 +80,7 @@ const [globaldata,setGlobaldata]=useState([])
                 <Grid container spacing={3} justify="center">
                     <Grid>
                         <Paper elevation={6}  variant="elevation" >
-                        {country?barChart: lineChart}
+    {country? barChart : lineChart}
                         </Paper> 
                     </Grid>
                 </Grid>

@@ -4,7 +4,11 @@ import Graphs from './components/chart'
 import Paperdetail from './components/paper'
 import {getDailyDataGlobal} from './getApiData/'
 import { getCountryData } from "./getApiData/"
-
+//  const divStyle=  {
+//    display: 'flex',
+//    flexDirection: 'column',
+//    alignItems: 'center'
+//  }
 
 
 class App extends Component {
@@ -37,10 +41,9 @@ class App extends Component {
     return (
       
       <div className='container'>
-        <h1>App</h1>
-        <Paperdetail data={data}/>
-        <AllCountries handleChange={this.handleChange}/>
-        <Graphs country={country} data={data}/>
+          <Paperdetail data={data}/>
+          <AllCountries handleChange={this.handleChange}/>
+          <Graphs country={country} data={data}/>
       </div>
     );
   }

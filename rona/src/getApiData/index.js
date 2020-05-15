@@ -16,7 +16,7 @@ export const getDailyDates=async ()=>{
       const response = async ()=> await(await fetch('https://covid19.mathdro.id/api/daily')).json()
       const dailyData=await response()
       const results = dailyData.map((result)=>result.reportDate)
-      console.log(results)
+
       return results
     } catch (error) {
       console.error(error)
